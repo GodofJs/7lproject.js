@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>12(DOM.Element)</title>
+    <link rel="" href="">
+    <script src="../../files/common/common.js"></script>
+    <style>
+        .silverBg {
+            background-color: #eee;
+        }
+        
+        .greenBg {
+            background-color: #5cdb3f;
+        }
+        
+        .blueText {
+            color: blue;
+        }
+        
+        .redText {
+            color: red;
+        }
+        
+        #action {
+            padding: 5px;
+            background-color: #f2e3c4;
+        }
+        
+        #box1 {
+            background-color: #f2f2f2;
+        }
+        
+        #box2 {
+            background-color: #d6f2d0;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div id="action">
+        <input type="text" id="input1" placeholder="Enter Button Name">
+        <select id="actionSelect">
+            <option>Select an Action</option>
+            <option value="AddaButtonToBox1">Add a Button to Box 1</option>
+            <option value="AddaButtonToBox2">Add a Button to Box 2</option>
+            <option value="RemoveBox1">Remove Box1</option>
+            <option value="AdoptH1FromiFrame">Adopt H1 from iFrame</option>
+            <option value="importH1FromiFrame">import H1 from iFrame</option>
+            <option value="getCookies">Get Cookies</option>
+            <option value="getActiveElement">Get Active Element</option>
+            <option value="ChangeBackgroundOfBox2">Change Background Of Box2</option>
+        </select>
+
+        <button id="goBtn" onclick="doAction()"> Go !</button>
+        <button id="refreshBtn" onclick="location.reload()"> Refresh</button>
+
+    </div>
+
+
+    <div id="box1">
+        <h1 id="h1">H1-1 : We Love 7Learn.com</h1>
+
+        <p class="p p1">
+            P(1) : This is a Text <span class="spn spn1">Span1</span> This is a Text <span class="spn spn2 redText">Span2</span> This is a Text <span class="spn spn3">Span3</span>
+
+        </p>
+    </div>
+
+
+    <div id="box2">
+        <h1 id="h2" class="h h2 redText">H1-2: We Love 7Learn.com again</h1>
+
+        <p class="p p2">P(2) : This is a Text This is a Text This is a Text <span>Span4</span>
+        </p>
+    </div>
+
+    <iframe id="myframe" src="framee.html" style="width: 500px;height: 200px"></iframe>
+
+    <br>
+
+    <script>
+        /* NOTE : تگ سلکت یک ویژگی دارد به نام آپشنز، که این ویژگی یک ارایه ای از آپشن های موجود در تگ سلکت را در خود نگه داری میکند که میتوان از ویژگی سلکتد ایندکس (میاد بر اساس آپشنی که انتخاب میکنیم ، ایندکس همون رو میده)، بعنوان ایندکس آپشنز استفاده کرد */
+
+        document.cookie = "email=avand.loghman@gmail.com; expires=Thu, 20 oct 2019 12:00:00 UTC; path=/";
+        document.cookie = "name=Loghman; expires=Thu, 18 oct 2019 12:00:00 UTC; path=/";
+        document.cookie = "age=27; expires=Thu, 18 oct 2019 12:00:00 UTC; path=/";
+        document.cookie = "site=www.7Learn.com; expires=Thu, 18 oct 2019 12:00:00 UTC; path=/";
+
+        var select = document.getElementById('actionSelect');
+        var input1 = document.getElementById('input1');
+        var frame = document.getElementById('myframe');
+
+        var box1 = document.getElementById('box1');
+        var h2 = document.getElementById('h2');
+        var box2 = h2.parentElement;
+
+        function doAction() {
+            var valueOfSelected = select.options[select.selectedIndex].value
+            switch (valueOfSelected) {
+
+                case 'AddaButtonToBox1':
+                    var btn1 = document.createElement("button");
+                    btn1.innerHTML = "button";
+                    if (input1.value.length > 0) {
+                        btn1.innerHTML = input1.value;
+                    }
+                    box1.appendChild(btn1);
+
+                    break;
+
+                case 'AddaButtonToBox2':
+                    var btn1 = document.createElement("button");
+                    btn1.innerHTML = "button";
+                    if (input1.value.length > 0) {
+                        btn1.innerHTML = input1.value;
+                    }
+                    box2.appendChild(btn1);
+                    break;
+                case 'RemoveBox1':
+                    box1.parentNode.removeChild(box1)
+                    break;
+                case 'AdoptH1FromiFrame':
+                    var externalh1 = frame.contentWindow.document.getElementsByTagName('H1')[0];
+                    var adoptedNode = document.adoptNode(externalh1);
+                    document.body.appendChild(adoptedNode);
+                    break;
+                case 'importH1FromiFrame':
+                    var externalh1 = frame.contentWindow.document.getElementsByTagName('H1')[0];
+                    var copyNode = document.importNode(externalh1, true);
+                    document.body.appendChild(copyNode);
+                    break;
+                case 'getCookies':
+                    
+                    var str = "" , cookiesArr = document.cookie.split(";");
+                    for( var i in cookiesArr){
+                        str += cookiesArr[i].replace("="," : ") + "<br>"
+                    }
+                    box2.innerHTML = str ;
+                    break;
+                case 'getActiveElement':
+                    document.activeElement.value = alert("you are click on button Go")
+                    break;
+                case 'ChangeBackgroundOfBox2':
+                    var randomBgColor = "rgb(" + rand(0, 255) + "," + rand(0, 255) + "," + rand(0, 255) + ")";
+                    box2.style.backgroundColor = randomBgColor;
+                    break;
+
+            }
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>12(DOM.Element)</title>
+    <link rel="stylesheet" href="../../files/files/common/pure.css">
+    <script src="../../files/files/common/common.js"></script>
+    <style>
+        .silverBg {
+            background-color: #eee;
+        }
+        
+        .greenBg {
+            background-color: #5cdb3f;
+        }
+        
+        .blueText {
+            color: blue;
+        }
+        
+        .redText {
+            color: red;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="box1">
+        <h1 id="h1">H1-1 : We Love 7Learn.com</h1>
+
+        <p class="p p1">
+            P(1) : This is a Text <span class="spn spn1">Span1</span> This is a Text <span class="spn spn2 redText">Span2</span> This is a Text <span class="spn spn3">Span3</span>
+
+        </p>
+        <button id="dokme1">chengeBg</button>
+        <button id="dokmeR1" onclick="resetBg()">resetChengeBg</button>
+    </div>
+
+    <div id="box2">
+        <h1 id="h2" class="h h2 redText">H1-2: We Love 7Learn.com again</h1>
+
+        <p class="p p2">P(2) : This is a Text This is a Text This is a Text <span>Span4</span>
+        </p>
+    </div>
+    <input type="text" id="sl" />
+    <a href="http://7Learn.com" id="7learnLink">7Learn.com</a>
+
+
+    <script>
+        //TODO : how to get element
+        var divBox1 = document.getElementById("box1");
+        //TODO : how to add properties of style for element
+        divBox1.style.padding = 20 + "px";
+        divBox1.style.margin = 10 + "px";
+        divBox1.style.border = "10px solid red";
+        divBox1.style.borderRadius = 10 + "%";
+        divBox1.style.textAlign = "center";
+        //TODO : how to chenge attribute by event
+        var h1 = document.getElementById('h1');
+        var button1 = document.getElementById("dokme1");
+        button1.addEventListener("click", chengebg, false);
+
+        function chengebg() {
+            h1.style.backgroundColor = "red";
+        }
+        //TODO : how to get value of attribute
+        document.write(h1.getAttribute("id"));
+        //TODO : how to set a attribute for element
+        h1.setAttribute("class", "greenBg");
+        //TODO : how to remove attribute of Element
+        function resetBg() {
+            h1.removeAttribute("style");
+            h1.removeAttribute("class");
+        }
+        //TODO : how to get attribute by selector in  a element
+        printAll(box1.querySelector(".spn").innerHTML);
+        var spn = document.querySelectorAll(".spn");
+        spn[2].setAttribute("class", "blueText");
+        //TODO : how to add & chenge class by method
+        h1.className = h1.className + " title";
+        h1.className = h1.className.replace("title", "t");
+
+    </script>
+</body>
+
+</html>

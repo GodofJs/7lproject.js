@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .divFixed{
+            position: fixed;
+            top: 0;
+        }
+    </style>
+</head>
+
+<body>
+  <div class="divFixed">
+      <button id="dokme1" onclick="smoothScrollTo(500)">scroll To 400px</button>
+   <button id="dokme2" onclick="smoothScrollTo(0)">scroll To Top</button>
+  </div>
+   <br/>
+   
+   <P>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, cumque, labore suscipit asperiores ducimus expedita adipisci beatae ex esse voluptatem deserunt. Neque consectetur ratione, reprehenderit illum odit corrupti unde assumenda!</P>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <P>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, cumque, labore suscipit asperiores ducimus expedita adipisci beatae ex esse voluptatem deserunt. Neque consectetur ratione, reprehenderit illum odit corrupti unde assumenda!</P>
+       <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <script>
+        
+        
+        function smoothScrollTo(yPos){
+            /*window.scrollTo(0,yPos);*/
+            var step = 20;
+            if(yPos < scrollY){ //شرط بالا و پایین رفتن
+               step *= -1;
+               }
+            if(Math.abs(yPos-scrollY) < step){ // شرط توقف
+               return
+               }
+            window.scrollBy(0,step)
+            setTimeout(function (){
+                smoothScrollTo(yPos)
+            },100)
+        }
+        /*NOTE : scrollBy() moshabe scrollTo() mibashad ba in tafavot ke agar scrollTo() be position ke dadid beresad digar ejra nemishav*/
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>14</title>
+    <script src="../../files/common/common.js"></script>
+    <style>
+        button {
+            font-size: 30px;
+            margin: 1%;
+        }
+        
+        p {
+            text-align: center;
+            font-size: 30px;
+            color: cadetblue
+        }
+        
+        #div1 {
+            width: 200px;
+            height: 200px;
+            background-color: aquamarine;
+            margin-left: 5%;
+        }
+
+    </style>
+</head>
+
+<body>
+    <!-- <p>lockal Time your country</p>
+    <button id="dokme" onclick="toggleTime()"></button>
+    <p>با کیک بر روی دکمه، ساعت اگر در حال اجرا باشد متوقف میشود و در غیر اینصورت اجرا میشود</p>-->
+
+    
+
+    <!--NOTE : clearTimeout -->
+    <!-- <button id="dokmee" onclick="clearTimeout(STO)">after 3 second</button>-->
+
+    
+
+    <!-- <button id="btnStart" onclick="startNumberGenarator()">start</button>
+    <button id="btnStop" onclick="stopNumberGenarator()">stop</button>
+    <button id="btnAllStop" onclick="stopAlltNumberGenarator()">stop All</button>
+    <br>
+    <p>تولید کننده اعداد رندم در هر ثانیه</p>
+    <div id="div1">number Gnarator : </div>
+    <div id="div2">id IntervalStart : </div>-->
+
+
+
+<!--fadeInBox(box)-->
+   
+    <button id="btn1"  onclick="box.myfadeIN()">fade IN</button>
+    <button  id="btn2" onclick="box.myfadeOUT()">fade OUT</button>
+    <div ondblclick="fadeOutBox(box)" id="div1"></div>
+
+    <script>
+        //TODO : try catch
+
+        /* var name = prompt("plz enter your name")
+         while (true){
+             
+                try{
+            var age = Number(prompt("plz enter your age"));
+            if(isNaN(age)|| age < 0){
+                throw "your age is not valid";
+            }
+            if(age > 120 ){
+               throw " your age is too big ";
+               }
+            alert("tank you");
+            break;
+            
+        } catch(err){
+            alert(err);
+        }
+
+                }*/
+
+
+
+
+        //TODO : setTimeOut
+
+        /*function myNumber() {
+
+            var btn = document.getElementById('dokmee');
+            btn.innerHTML = rand(1, 99);
+        }
+
+        var STO = setTimeout(function() {
+            myNumber();
+        }, 3000);*/
+
+
+
+
+
+        //TODO : setIntertval & clearInterval 1
+
+        /*function myTimeLive() {
+            var btn = document.getElementById('dokme');
+            var date = new Date();
+            var hourse = date.getHours();
+            var min = date.getMinutes();
+            var sec = date.getSeconds();
+            var myTime = hourse + " : " + min + " : " + sec;
+            btn.innerHTML = myTime;
+        }
+        
+        
+        var int = setInterval(function() {
+            myTimeLive()
+        }, 1000)
+
+        function toggleTime() {
+            if (int > 0) {
+                //TODO : clearInterval
+                clearInterval(int)
+                int = 0;
+            } else {
+                int = setInterval(function() {
+                    myTimeLive()
+                }, 1000)
+            }
+        }*/
+
+
+
+
+        //TODO : setIntertval & clearInterval 2
+
+        /* var div1 = document.getElementById('div1');
+         var intervalStart;
+         var div2 = document.getElementById('div2');
+
+
+
+         function startNumberGenarator() {
+            //TODO :برای اینکه کلید استارت فقط یک تولید کننده داشته باشد حتی با چند بار کلیک کردن clearInterval(intervalStart);
+             intervalStart = setInterval(function() {
+                 var randomColor = "rgb("+ rand(1,255) + "," +  rand(1,255) + "," +  rand(1,255) + ")";
+                 div1.innerHTML += "<span style='color:"+ randomColor +"'>"+ rand(10,99) + "</span> &nbsp; "
+             }, 1000)
+             div2.innerHTML += "&nbsp &nbsp" + intervalStart;
+         };
+
+
+
+         function stopNumberGenarator() {
+             clearInterval(intervalStart);
+         };
+
+
+
+         function stopAlltNumberGenarator() {
+             for (var i = 1; i < 100; i++) {
+                 clearInterval(i);
+             }
+         };*/
+
+
+
+        //TODO : fade In&OUT project
+
+        var box = document.getElementById('div1');
+        
+        
+        function fadeInBox(elm) {
+         
+            var elmOpacity = getComputedStyle(elm).opacity;
+            elm.style.opacity = elmOpacity;
+            if (elmOpacity >= 1) {
+                return
+            }
+            elm.style.opacity = Number(elmOpacity) + 0.01;
+            setTimeout(function() {
+                fadeInBox(elm)
+            }, 10)
+        }
+
+
+        function fadeOutBox(elm) {
+            
+            var elmOpacity = getComputedStyle(elm).opacity;
+            elm.style.opacity = elmOpacity;
+            if (elmOpacity <= 0) {
+                return
+            }
+            elm.style.opacity = Number(elmOpacity) - 0.01;
+            setTimeout(function() {
+                fadeOutBox(elm)
+            }, 10)
+        }
+
+        
+        //TODO : how can i create method for element
+        
+        Element.prototype.myfadeIN = function (){
+            fadeInBox(this)
+        }
+        Element.prototype.myfadeOUT = function (){
+            fadeOutBox(this)
+        }
+    </script>
+</body>
+
+</html>

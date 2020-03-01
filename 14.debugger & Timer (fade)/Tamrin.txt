@@ -1,0 +1,2 @@
+Tamrin1 : smooth scroll using setTimeout and recursive functions !
+Tamrin2 : smooth scroll as a new method of window object !

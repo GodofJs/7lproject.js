@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>spider game pro</title>
+
+    <!--<script src="../../files/common/common.js" type="text/javascript"></script>-->
+    
+    <style>
+        body {
+            background: url(img/spiderWeb.png)center center no-repeat fixed;
+            padding-left: 200px;
+            padding-right: 200px;
+        }
+
+        #mosq {
+            position: fixed;
+
+        }
+
+        #spider {
+
+            position: fixed;
+        }
+        #timer{
+            font-size: 300px;
+            position: fixed;
+            bottom: 5px;
+            left: 50px;
+            border-radius: 5px
+            color: #ccc;
+            opacity: 0.1;
+        }
+
+    </style>
+</head>
+
+<body onload="startGame()" onkeydown="handleKeys(event)">
+    <p>a Game by<br /><b>hamed alavi</b></p>
+    <img id="mosq" src="img/mos.png" alt="مگس">
+    <img id="spider" src="img/spider.png" alt="عنکبوت">
+    <div id="timer"></div>
+    
+    
+    <script>
+        var time = 10;
+        var timer = document.getElementById('timer');
+        timer.innerHTML = time;
+        
+        
+        function reduceTimer(){
+            if(Number(timer.innerHTML)== 0){
+               gameOver()
+                return
+               }
+            timer.innerHTML = Number(timer.innerHTML)-1;
+            setTimeout(function (){
+                reduceTimer()
+            },1000)
+        }
+        
+        
+        function gameOver(){
+            alert("متاسفانه شما نتوانستید در زمان تعیین شده، پشه را بخورید")
+            window.location.reload()
+        }
+        
+        
+        function rand(start, end) { // 2 , 9
+            var rnd = start + Math.floor(Math.random() * (end - start));
+            return rnd;
+        }
+
+
+        function startGame() {
+            var mosq = document.getElementById('mosq');
+            var spider = document.getElementById('spider');
+            mosq.style.top = rand(0, window.innerHeight - 50) + "px";
+            mosq.style.left = rand(0, window.innerWidth - 200) + "px";
+            spider.style.top = rand(0, window.innerHeight - 50) + "px";
+            spider.style.left = rand(0, window.innerWidth - 200) + "px";
+            alert("به بازی پشه کشی خوش اومدید!\nسعی کنید هر چه سریعتر پشه رو نابود کنید\n شما فقط " +time+"ثانیه فرصت دارید")
+            reduceTimer()
+        }
+
+        function handleKeys(e) {
+            if (e.keyCode === 37) {
+                moveSpider('left')
+            } else if (e.keyCode === 38) {
+                moveSpider('up')
+            } else if (e.keyCode === 39) {
+                moveSpider('right')
+            } else if (e.keyCode === 40) {
+                moveSpider('down')
+            }
+            if (youWin()) {
+                alert("شما برنده شدید، بنابراین بازی رفرش میشود");
+                location.reload()
+            }
+        }
+
+        function moveSpider(direction) {
+            var spider = document.getElementById('spider');
+            var d = 10;
+            switch (direction) {
+                case "left":
+                    spider.style.left = spider.offsetLeft - d + "px";
+                    if (spider.offsetLeft < 0) {
+                        spider.style.left = window.innerWidth + "px";
+                    }
+                    break;
+                case "up":
+                    spider.style.top = spider.offsetTop - d + "px";
+                    if (spider.offsetTop < 0) {
+                        spider.style.top = window.innerHeight + "px";
+                    }
+                    break;
+                case "right":
+                    spider.style.left = spider.offsetLeft + d + "px";
+                    if (spider.offsetLeft > window.innerWidth) {
+                        spider.style.left = 0 + "px";
+                    }
+                    break;
+                case "down":
+                    spider.style.top = spider.offsetTop + d + "px";
+                    if (spider.offsetTop > window.innerHeight) {
+                        spider.style.top = 0 + "px";
+                    }
+                    break;
+            }
+        }
+
+        function youWin() {
+            var mosq = document.getElementById('mosq');
+            var spider = document.getElementById('spider');
+            if (Math.abs(mosq.offsetTop - spider.offsetTop) < 20 && Math.abs(mosq.offsetLeft - spider.offsetLeft) < 20) {
+                mosq.style.backgroundColor = "#FC4C4C";
+                return true
+            }
+            return false;
+        }
+        
+        
+
+    </script>
+</body>
+
+</html>

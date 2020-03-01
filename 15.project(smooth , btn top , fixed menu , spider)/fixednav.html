@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>15fixed</title>
+    <link rel="stylesheet" href="../common/pure.css" type="text/css" />
+    <script src="../common/common.js"></script>
+    <style>
+        body {
+            font-family: tahoma;
+            font-size: 13px;
+            direction: rtl;
+        }
+
+        .desc {
+            font-weight: bold;
+            color: #25BA00;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        div {
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        div.header {
+            background-color: #fafafa;
+            text-align: center;
+            height: 150px;
+        }
+
+        nav#topMenu {
+            background-color: #555;
+            text-align: right;
+            height: 50px;
+            line-height: 46px;
+            transition: height, line-height, font-size 500ms, 400ms, 420ms;
+        }
+
+        .sticky {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 30px !important;
+            line-height: 26px !important;
+            font-size: 12px !important;
+        }
+
+        nav#topMenu a {
+            color: #fff;
+            padding: 0 15px;
+            display: inline-block;
+        }
+
+        nav#topMenu a:hover {
+            background-color: #777;
+        }
+
+        div.content {
+            background-color: #fafafa;
+            text-align: center;
+            min-height: 600px;
+            line-height: 100px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>Top Logo And Title here</h1>
+        <div class="desc">به پایین اسکرول کنید. منوی سایت به شکل ثابت در بالا خواهد ماند !!!</div>
+    </div>
+    <nav id="topMenu">
+        <a href="http://www.7Learn.com">خانه</a>
+        <a href="http://www.7Learn.com">خدمات</a>
+        <a href="http://www.7Learn.com">درباره ما</a>
+        <a href="http://www.7Learn.com">تماس با ما</a>
+    </nav>
+    <div class="content">
+        Content Here<br>.............<br>Content Here<br>www.7Learn.com<br>Content Here<br>Content
+        Here<br>www.7Learn.com<br>Content Here<br>Content Here<br>Content Here<br>Content Here<br>Content Here<br>
+        www.7Learn.com<br>Content Here<br>Content Here<br>.............<br>www.7Learn.com<br>Content Here<br>Content
+        Here<br>Content Here<br>Content Here<br>Content Here<br>.............<br>Content Here<br>
+    </div>
+
+    <script>
+        var navbar = document.getElementById('topMenu');
+        var navClass = navbar.getAttribute("class");
+        window.addEventListener("scroll", function() {
+            if (!navClass) {
+                navbar.setAttribute("class", "")
+            }
+            if (window.scrollY > navbar.offsetTop) {
+                navbar.setAttribute("class", " sticky")
+            }
+        })
+
+    </script>
+</body>
+
+</html>

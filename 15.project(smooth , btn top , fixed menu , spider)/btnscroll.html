@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>scroll</title>
+    <style>
+        .dokmefixed {
+            position: fixed;
+            top: 0;
+        }
+
+        #goUp {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            opacity: 0;
+        }
+
+        #goUp:hover {
+            opacity: 0.7 !important;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="dokmefixed">
+        <button id="dokme1" onclick="  smoothScrollTo(400)">scroll To 400px</button>
+        <button id="dokme2" onclick="  smoothScrollTo(0)">scroll To Top</button>
+    </div>
+    <div class="box">
+        <h1>0 : 7Learn.com</h1>
+
+        <p>We Love Web Programming !</p>
+
+        <p>and the awesome javascript !!!</p>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h1>0 : 7Learn.com</h1>
+
+        <p>We Love Web Programming !</p>
+
+        <p>and the awesome javascript !!!</p>
+        br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <h1>1 : www.7Learn.com</h1>
+        <h1>2 : Javascript & JQuery</h1>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h1>0 : 7Learn.com</h1>
+
+        <p>We Love Web Programming !</p>
+
+        <p>and the awesome javascript !!!</p>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <p>and the awesome javascript !!!</p>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h1>0 : 7Learn.com</h1>
+
+        <p>We Love Web Programming !</p>
+
+        <p>and the awesome javascript !!!</p>
+        br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
+    <script>
+        //TODO : smoothScrollTo 
+
+        /*function smoothScrollTo(yPos) {
+             //window.scrollTo(0, yPos);
+            var step = 20;
+            if (yPos < scrollY) { //شرط بالا و پایین رفتن
+                step *= -1;
+            }
+            if (Math.abs(yPos - scrollY) < step) { // شرط توقف
+                return
+            }
+            window.scrollBy(0, step)
+            setTimeout(function() {
+                smoothScrollTo(yPos)
+            }, 100)
+        }*/
+
+
+
+
+
+
+
+        //TODO : fadeIn 
+
+        function fadeIn(elem) {
+            var elemOpacity = Number(getComputedStyle(elem).opacity).toPrecision(2);
+            elem.style.opacity = elemOpacity;
+            if (elemOpacity >= 1) {
+                return;
+            }
+            elem.style.opacity = Number(elemOpacity) + 0.01;
+            setTimeout(function() {
+                fadeIn(elem)
+            }, 100)
+        }
+
+        //TODO : fadeOut 
+
+        function fadeOut(elem) {
+            var elemOpacity = Number(getComputedStyle(elem).opacity).toPrecision(2);
+            elem.style.opacity = elemOpacity;
+            if (elemOpacity <= 0) {
+                return;
+            }
+            elem.style.opacity = Number(elemOpacity) - 0.01;
+            setTimeout(function() {
+                fadeOut(elem)
+            }, 100)
+        }
+
+
+        //TODO : smoothScrollTo 
+
+        function smoothScrollTo(yPos) {
+
+            var step = 20;
+            if (yPos < scrollY) { //شرط بالا و پایین رفتن
+                step *= -1;
+            }
+            if (Math.abs(yPos - scrollY) < step) { // شرط توقف
+                return
+            }
+            window.scrollBy(0, step)
+            setTimeout(function() {
+                smoothScrollTo(yPos)
+            }, 100)
+        }
+
+
+        //TODO :pack btnScrollTop 
+
+        (function btnScrollTop() {
+            var goUp = document.createElement('img');
+            goUp.setAttribute("src", "img/top_arrow.png")
+            goUp.id = "goUp";
+            document.body.appendChild(goUp)
+
+            function setVisibility() {
+                if (window.scrollY < 200) {
+                    fadeOut(goUp)
+                } else {
+                    fadeIn(goUp)
+                }
+            }
+
+            window.addEventListener("scroll", setVisibility)
+            goUp.addEventListener("click", function() {
+                smoothScrollTo(0)
+            })
+        }())
+
+    </script>
+</body>
+
+</html>
